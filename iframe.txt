@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Street View Map Embed</title>
+  <style>
+    html, body { margin: 0; height: 100%; }
+    iframe { width: 100%; height: 100%; border: none; }
+  </style>
+</head>
+<body>
+  <iframe id="mapFrame"></iframe>
+
+  <script>
+    function getParam(key, fallback = '') {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(key) || fallback;
+    }
+
+    const lat = getParam('lat', '32.613899');
+    const lon = getParam('lon', '-83.687934');
+    const z = getParam('z', '17');
+    const t = getParam('t', 'h');
+
+    const embedUrl = `https://maps.google.com/maps?q=${lat},${lon}&z=${z}&t=${t}&output=svembed`;
+    document.getElementById('mapFrame').src = embedUrl;
+  </script>
+</body>
+</html>
